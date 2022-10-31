@@ -6,11 +6,17 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { HeroInsertDialogComponent } from './hero-insert-dialog/hero-insert-dialog.component';
 import { HeroesComponent } from './heroes/heroes.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
+import { UserInsertDialogComponent } from './user-insert-dialog/user-insert-dialog.component';
+import { UsersComponent } from './users/users.component';
 
 const COMPONENTS = [
   HeroesComponent,
   HeroInsertDialogComponent,
   HeroDetailComponent,
+  UsersComponent,
+  UserInsertDialogComponent,
+  UserDetailComponent,
 ];
 
 @NgModule({

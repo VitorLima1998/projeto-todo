@@ -9,6 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTabsModule } from '@angular/material/tabs';
+
 const COMPONENTS = [
   MatSliderModule,
   MatTableModule,
@@ -19,6 +21,7 @@ const COMPONENTS = [
   MatInputModule,
   MatIconModule,
   MatCardModule,
+  MatTabsModule,
 ];
 
 @NgModule({

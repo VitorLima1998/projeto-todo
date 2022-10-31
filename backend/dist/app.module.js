@@ -14,25 +14,28 @@ const task_entity_1 = require("./task/entities/task.entity");
 const task_module_1 = require("./task/task.module");
 const user_entity_1 = require("./user/entities/user.entity");
 const user_module_1 = require("./user/user.module");
+const hero_entity_1 = require("./hero/entities/hero.entity");
+const hero_module_1 = require("./hero/hero.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
             typeorm_1.TypeOrmModule.forRoot({
-                type: 'mysql',
-                host: 'localhost',
+                type: "mysql",
+                host: "localhost",
                 port: 3306,
-                username: 'root',
-                password: 'admin',
-                database: 'todolist',
-                entities: [user_entity_1.User, task_entity_1.Task],
+                username: "root",
+                password: "admin",
+                database: "todolist",
+                entities: [user_entity_1.User, task_entity_1.Task, hero_entity_1.Hero],
                 synchronize: true,
                 logging: true,
             }),
             user_module_1.UserModule,
             task_module_1.TaskModule,
             auth_module_1.AuthModule,
+            hero_module_1.HeroModule,
         ],
         controllers: [],
         providers: [],

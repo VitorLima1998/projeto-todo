@@ -8,13 +8,13 @@ import {
   Post,
   UseGuards,
   ValidationPipe,
-} from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { UserService } from './user.service';
+} from "@nestjs/common";
+import { AuthGuard } from "@nestjs/passport";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
+import { UserService } from "./user.service";
 
-@Controller('user')
+@Controller("api/user")
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -28,30 +28,30 @@ export class UserController {
     return this.userService.findAll();
   }
 
-  @Get('/list/:id')
-  findOne(@Param('id') id: string) {
+  @Get("/list/:id")
+  findOne(@Param("id") id: string) {
     return this.userService.findOne(id);
   }
 
-  @Get(':email')
+  @Get(":email")
   @UseGuards(AuthGuard())
-  findByEmail(@Param('email') email: string) {
+  findByEmail(@Param("email") email: string) {
     return this.userService.findByEmail(email);
   }
 
-  @Patch(':id')
+  @Patch(":id")
   update(
-    @Param('id') id: string,
-    @Body(ValidationPipe) updateUserDto: UpdateUserDto,
+    @Param("id") id: string,
+    @Body(ValidationPipe) updateUserDto: UpdateUserDto
   ) {
     return this.userService.update(id, updateUserDto);
   }
 
-  @Delete(':id')
-  async remove(@Param('id') id: string) {
+  @Delete(":id")
+  async remove(@Param("id") id: string) {
     await this.userService.remove(id);
     return {
-      message: 'Usuário removido com sucesso!',
+      message: "Usuário removido com sucesso!",
     };
   }
 }

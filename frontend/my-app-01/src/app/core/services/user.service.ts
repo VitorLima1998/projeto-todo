@@ -1,5 +1,9 @@
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { catchError, Observable, pipe, throwError } from 'rxjs';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../model/user';
 
@@ -20,7 +24,13 @@ export class UserService {
   }
 
   addUser(user: User): Observable<User> {
-    return this.http.post(baseUrl, user);
+    return this.http
+      .post(baseUrl, user, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+      })
+      .pipe(catchError(this.handleError));
   }
 
   updateUser(newUser: User): Observable<User> {
@@ -37,5 +47,17 @@ export class UserService {
 
   findByEmail(email: string): Observable<User[]> {
     return this.http.get<User[]>(`${baseUrl}?name=${email}`);
+  }
+
+  private handleError(errorResponse: HttpErrorResponse) {
+    if (errorResponse.error instanceof ErrorEvent) {
+      console.error('Client Side Error :', errorResponse.error.message);
+    } else {
+      console.error('Server Side Error :', errorResponse);
+    }
+    return throwError(
+      () =>
+        'There is a problem with the service. We are notified & working on it. Please try again later.'
+    );
   }
 }

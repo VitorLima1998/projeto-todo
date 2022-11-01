@@ -24,7 +24,7 @@ let UserService = class UserService {
         this.usersRepository = usersRepository;
     }
     async create(createUserDto) {
-        createUserDto.confirmationToken = crypto.randomBytes(32).toString('hex');
+        createUserDto.confirmationToken = crypto.randomBytes(32).toString("hex");
         createUserDto.salt = await bcrypt.genSalt();
         createUserDto.password = await this.hashPassword(createUserDto.password, createUserDto.salt);
         createUserDto.status = false;
@@ -35,11 +35,11 @@ let UserService = class UserService {
             return createUserDto;
         }
         catch (error) {
-            if (error.code.toString() === '23505') {
-                throw new common_1.ConflictException('Endereço de email já está em uso');
+            if (error.code.toString() === "23505") {
+                throw new common_1.ConflictException("Endereço de email já está em uso");
             }
             else {
-                throw new common_1.InternalServerErrorException('Erro ao salvar o usuário no banco de dados');
+                throw new common_1.InternalServerErrorException("Erro ao salvar o usuário no banco de dados");
             }
         }
     }
@@ -51,17 +51,17 @@ let UserService = class UserService {
             return await this.usersRepository.find();
         }
         catch (err) {
-            console.log('Impossível buscar usuários');
+            console.log("Impossível buscar usuários");
             return null;
         }
     }
     async findOne(id) {
         const user = this.usersRepository
-            .createQueryBuilder('user')
-            .select(['user.nome', 'user.email'])
+            .createQueryBuilder("user")
+            .select(["user.nome", "user.email"])
             .getOne();
         if (!user)
-            throw new common_1.NotFoundException('Usuário não encontrado');
+            throw new common_1.NotFoundException("Usuário não encontrado");
         return user;
     }
     async findByEmail(email) {
@@ -70,7 +70,7 @@ let UserService = class UserService {
     async update(id, updateUserDto) {
         const user = await this.findOne(id);
         const { nome, email, status } = updateUserDto;
-        user.nome = nome ? nome : user.nome;
+        user.name = nome ? nome : user.name;
         user.email = email ? email : user.email;
         user.status = status === undefined ? user.status : status;
         try {
@@ -78,13 +78,13 @@ let UserService = class UserService {
             return user;
         }
         catch (error) {
-            throw new common_1.InternalServerErrorException('Erro ao salvar os dados no banco de dados');
+            throw new common_1.InternalServerErrorException("Erro ao salvar os dados no banco de dados");
         }
     }
     async remove(userId) {
         const result = await this.usersRepository.delete({ id: userId });
         if (result.affected === 0) {
-            throw new common_1.NotFoundException('Não foi encontrado um usuário com o ID informado');
+            throw new common_1.NotFoundException("Não foi encontrado um usuário com o ID informado");
         }
     }
     async checkCredentials(credentialsDto) {

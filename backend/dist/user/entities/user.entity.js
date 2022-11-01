@@ -20,15 +20,15 @@ let User = class User {
     }
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
+    (0, typeorm_1.PrimaryGeneratedColumn)("uuid"),
     __metadata("design:type", String)
 ], User.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ nullable: true, type: "varchar", default: "" }),
     __metadata("design:type", String)
-], User.prototype, "nome", void 0);
+], User.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ nullable: true, type: "varchar", default: "" }),
     __metadata("design:type", String)
 ], User.prototype, "email", void 0);
 __decorate([
@@ -44,7 +44,7 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "confirmationToken", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: false }),
+    (0, typeorm_1.Column)({ nullable: true, type: "varchar", default: "" }),
     __metadata("design:type", String)
 ], User.prototype, "salt", void 0);
 __decorate([
@@ -60,7 +60,7 @@ __decorate([
     __metadata("design:type", task_entity_1.Task)
 ], User.prototype, "task", void 0);
 User = __decorate([
-    (0, typeorm_1.Entity)('tbl_user')
+    (0, typeorm_1.Entity)("tbl_user")
 ], User);
 exports.User = User;
 //# sourceMappingURL=user.entity.js.map

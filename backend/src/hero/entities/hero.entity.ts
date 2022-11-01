@@ -6,6 +6,6 @@ export class Hero {
   id: string;
   @Column()
   name: string;
-  @Column()
+  @Column({ default: "" })
   power: string;
 }

@@ -11,7 +11,8 @@ import { UserInsertDialogComponent } from '../user-insert-dialog/user-insert-dia
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name'];
+  panelOpenState = false;
+  displayedColumns: string[] = ['userTable'];
 
   selectedUser?: User;
   id?: string;
@@ -19,8 +20,6 @@ export class UsersComponent implements OnInit {
   dataSource: User[] = [];
 
   @ViewChild(MatTable) table!: MatTable<User>;
-
-  displayColumns: string[] = ['id', 'name', 'action'];
 
   constructor(private userService: UserService, public dialog: MatDialog) {}
 
@@ -32,17 +31,25 @@ export class UsersComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result !== undefined) {
-        let user: User = { name: result };
+        // console.log(result);
+        let user: User = {
+          name: result.name,
+          password: result.password,
+          email: result.email,
+        };
+
+        // console.log(user);
 
         this.userService.addUser(user).subscribe({
           next: (user) => {
-            console.log(user);
+            // console.log(user);
             this.getUsers(); // Atualizar o data Source
           },
           error: (err) => {
             console.error(err);
           },
         });
+
         this.table.renderRows();
       }
     });
@@ -50,6 +57,21 @@ export class UsersComponent implements OnInit {
 
   removeData() {
     this.dataSource.pop();
+    this.table.renderRows();
+  }
+
+  async removeUser(id: string) {
+    await this.userService.removeUser(id).subscribe({
+      next: (user) => {
+        // console.log(user);
+        alert('User deleted successfully');
+        this.getUsers();
+      },
+      error: () => {
+        alert('Error while deleting the User');
+      },
+    });
+
     this.table.renderRows();
   }
 

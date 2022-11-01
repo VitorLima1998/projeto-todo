@@ -1,7 +1,7 @@
-import { Task } from 'src/task/entities/task.entity';
+import { Task } from "src/task/entities/task.entity";
 export declare class User {
     id: string;
-    nome: string;
+    name: string;
     email: string;
     password: string;
     status: boolean;

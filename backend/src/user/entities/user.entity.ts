@@ -1,5 +1,5 @@
-import * as bcrypt from 'bcrypt';
-import { Task } from 'src/task/entities/task.entity';
+import * as bcrypt from "bcrypt";
+import { Task } from "src/task/entities/task.entity";
 import {
   Column,
   CreateDateColumn,
@@ -9,14 +9,14 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-} from 'typeorm';
-@Entity('tbl_user')
+} from "typeorm";
+@Entity("tbl_user")
 export class User {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn("uuid")
   id: string;
-  @Column()
-  nome: string;
-  @Column()
+  @Column({ nullable: true, type: "varchar", default: "" })
+  name: string;
+  @Column({ nullable: true, type: "varchar", default: "" })
   email: string;
   @Column()
   password: string;
@@ -24,7 +24,7 @@ export class User {
   status: boolean;
   @Column()
   confirmationToken: string;
-  @Column({ nullable: false })
+  @Column({ nullable: true, type: "varchar", default: "" })
   salt: string;
   @CreateDateColumn()
   createAt: Date;

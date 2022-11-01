@@ -45,6 +45,22 @@ table {
   padding: 0.8rem;
   display: flex;
   justify-content: flex-end;
-  background: rgba(113, 113, 113, 0.425);
-  border-radius: 0.7 rem;
+}
+
+td .button {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+td .button button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+}
+
+td .button button mat-icon {
+  font-size: 1.3rem;
 }

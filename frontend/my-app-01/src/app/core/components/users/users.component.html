@@ -17,15 +17,18 @@
               Click to view User's details
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <p>ID: {{ user.id }}</p>
-          <p>E-Mail: {{ user.email }}</p>
-          <p>Token: {{ user.confirmationToken }}</p>
+          <div class="detail">
+            <p><span>ID:</span> {{ user.id }}</p>
+            <p><span>E-Mail:</span> {{ user.email }}</p>
+            <p><span>Token:</span> {{ user.confirmationToken }}</p>
+          </div>
+
           <div class="button">
-            <button mat-fab color="primary">
+            <button mat-fab color="warn" (click)="openDialog()">
               <mat-icon>edit</mat-icon>
             </button>
 
-            <button mat-fab color="primary" (click)="removeUser(user.id)">
+            <button mat-fab color="warn" (click)="removeUser(user.id)">
               <mat-icon>delete</mat-icon>
             </button>
           </div>
@@ -40,11 +43,7 @@
   </table>
 </div>
 <div class="bottom">
-  <!-- <button mat-raised-button (click)="openDialog()" color="primary">
-    Add User
-  </button> -->
-
-  <button mat-fab color="primary" (click)="openDialog()">
+  <button mat-fab color="warn" (click)="openDialog()">
     <mat-icon>add</mat-icon>
   </button>
 </div>

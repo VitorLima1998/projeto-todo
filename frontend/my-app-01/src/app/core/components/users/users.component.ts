@@ -55,14 +55,9 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  removeData() {
-    this.dataSource.pop();
-    this.table.renderRows();
-  }
-
   async removeUser(id: string) {
     await this.userService.removeUser(id).subscribe({
-      next: (user) => {
+      next: () => {
         // console.log(user);
         alert('User deleted successfully');
         this.getUsers();
@@ -72,6 +67,23 @@ export class UsersComponent implements OnInit {
       },
     });
 
+    this.table.renderRows();
+  }
+
+  updateUser(user: User) {
+    this.userService.updateUser(user, user.id as string).subscribe({
+      next: (user) => {
+        // console.log(user);
+        this.getUsers(); // Atualizar o data Source
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  }
+
+  removeData() {
+    this.dataSource.pop();
     this.table.renderRows();
   }
 

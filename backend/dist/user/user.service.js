@@ -67,10 +67,10 @@ let UserService = class UserService {
     async findByEmail(email) {
         return await this.usersRepository.findOneBy({ email });
     }
-    async update(id, updateUserDto) {
+    async update(updateUserDto, id) {
         const user = await this.findOne(id);
-        const { nome, email, status } = updateUserDto;
-        user.name = nome ? nome : user.name;
+        const { name, email, status } = updateUserDto;
+        user.name = name ? name : user.name;
         user.email = email ? email : user.email;
         user.status = status === undefined ? user.status : status;
         try {

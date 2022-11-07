@@ -11,7 +11,7 @@ export declare class UserService {
     findAll(): Promise<User[]>;
     findOne(id: string): Promise<User>;
     findByEmail(email: string): Promise<User>;
-    update(id: string, updateUserDto: UpdateUserDto): Promise<User>;
+    update(updateUserDto: UpdateUserDto, id: string): Promise<User>;
     remove(userId: string): Promise<void>;
     checkCredentials(credentialsDto: CredentialsDto): Promise<User>;
 }

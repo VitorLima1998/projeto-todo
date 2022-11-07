@@ -33,8 +33,12 @@ export class UserService {
       .pipe(catchError(this.handleError));
   }
 
-  updateUser(newUser: User): Observable<User> {
-    return this.http.put(baseUrl, newUser);
+  // updateUser(newUser: User): Observable<User> {
+  //   return this.http.put(baseUrl, newUser);
+  // }
+
+  updateUser(user: User, id: string): Observable<User> {
+    return this.http.put<User>(`${baseUrl}/${id}`, user);
   }
 
   removeUser(id: string): Observable<User> {

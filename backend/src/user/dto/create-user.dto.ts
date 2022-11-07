@@ -1,9 +1,9 @@
-import { Task } from 'src/task/entities/task.entity';
+import { Task } from "src/task/entities/task.entity";
 
 export class CreateUserDto {
   id: string;
 
-  nome: string;
+  name: string;
 
   email: string;
 

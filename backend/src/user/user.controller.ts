@@ -6,12 +6,14 @@ import {
   Param,
   Patch,
   Post,
+  Put,
   UseGuards,
   ValidationPipe,
 } from "@nestjs/common";
 import { AuthGuard } from "@nestjs/passport";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
+import { User } from "./entities/user.entity";
 import { UserService } from "./user.service";
 
 @Controller("api/user")
@@ -39,12 +41,20 @@ export class UserController {
     return this.userService.findByEmail(email);
   }
 
-  @Patch(":id")
-  update(
+  // @Patch("/:id")
+  // update(
+  //   @Param("id") id: string,
+  //   @Body(ValidationPipe) updateUserDto: UpdateUserDto
+  // ) {
+  //   return this.userService.update(id, updateUserDto);
+  // }
+
+  @Put(":id")
+  async update(
     @Param("id") id: string,
-    @Body(ValidationPipe) updateUserDto: UpdateUserDto
-  ) {
-    return this.userService.update(id, updateUserDto);
+    @Body() user: CreateUserDto
+  ): Promise<User> {
+    return this.userService.update(user, id);
   }
 
   @Delete("/:id")

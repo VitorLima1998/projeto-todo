@@ -64,3 +64,13 @@ td .button button {
 td .button button mat-icon {
   font-size: 1.3rem;
 }
+
+span {
+  font-weight: bold;
+}
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}

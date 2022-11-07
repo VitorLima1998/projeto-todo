@@ -18,14 +18,14 @@ class UpdateUserDto extends (0, mapped_types_1.PartialType)(create_user_dto_1.Cr
 __decorate([
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)({
-        message: 'Informe um nome de usuário válido',
+        message: "Enter the valid username",
     }),
     __metadata("design:type", String)
-], UpdateUserDto.prototype, "nome", void 0);
+], UpdateUserDto.prototype, "name", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsEmail)({}, {
-        message: 'Informe um endereço de email válido',
+        message: "Informe um endereço de email válido",
     }),
     __metadata("design:type", String)
 ], UpdateUserDto.prototype, "email", void 0);

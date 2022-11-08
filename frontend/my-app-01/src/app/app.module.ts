@@ -7,7 +7,6 @@ import { ComponentsModule } from './core/components/components.module';
 import { ToolbarComponent } from './core/layout/toolbar/toolbar.component';
 import { ServicesModule } from './core/services/services.module';
 import { MaterialModule } from './material/material.module';
-
 @NgModule({
   declarations: [AppComponent, ToolbarComponent],
   imports: [

@@ -11,6 +11,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 const COMPONENTS = [
   MatSliderModule,
@@ -24,6 +25,7 @@ const COMPONENTS = [
   MatCardModule,
   MatTabsModule,
   MatExpansionModule,
+  DragDropModule,
 ];
 
 @NgModule({

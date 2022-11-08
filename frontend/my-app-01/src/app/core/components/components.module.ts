@@ -9,6 +9,9 @@ import { HeroesComponent } from './heroes/heroes.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { UserInsertDialogComponent } from './user-insert-dialog/user-insert-dialog.component';
 import { UsersComponent } from './users/users.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TasksComponent } from './tasks/tasks.component';
+import { TaskInsertDialogComponent } from './task-insert-dialog/task-insert-dialog.component';
 
 const COMPONENTS = [
   HeroesComponent,
@@ -17,11 +20,19 @@ const COMPONENTS = [
   UsersComponent,
   UserInsertDialogComponent,
   UserDetailComponent,
+  TasksComponent,
+  TaskInsertDialogComponent,
 ];
 
 @NgModule({
   declarations: [COMPONENTS],
-  imports: [CommonModule, MaterialModule, FormsModule, RouterModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    FormsModule,
+    RouterModule,
+    ReactiveFormsModule,
+  ],
   exports: [COMPONENTS],
 })
 export class ComponentsModule {}

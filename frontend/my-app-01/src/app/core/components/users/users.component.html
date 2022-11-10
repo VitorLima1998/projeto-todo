@@ -21,6 +21,14 @@
             <p><span>ID:</span> {{ user.id }}</p>
             <p><span>E-Mail:</span> {{ user.email }}</p>
             <p><span>Token:</span> {{ user.confirmationToken }}</p>
+            <p>
+              <span>Create Data:</span>
+              {{ user.createAt | date: "dd/MM/yyyy" }}
+            </p>
+            <p>
+              <span>Update Data:</span>
+              {{ user.updateAt | date: "dd/MM/yyyy" }}
+            </p>
           </div>
 
           <div class="button">

@@ -5,11 +5,11 @@
 
       <div
         cdkDropList
-        [cdkDropListData]="todoT"
+        [cdkDropListData]="toDo"
         class="example-list"
         (cdkDropListDropped)="drop($event)"
       >
-        <div class="example-box" *ngFor="let item of todoT" cdkDrag>
+        <div class="example-box" *ngFor="let item of toDo" cdkDrag>
           {{ item.name }}
         </div>
       </div>
@@ -23,6 +23,7 @@
         [cdkDropListData]="todoDoing"
         class="example-list"
         (cdkDropListDropped)="drop($event)"
+        [cdkDropListEnterPredicate]="doing"
       >
         <div class="example-box" *ngFor="let item of todoDoing" cdkDrag>
           {{ item.name }}
@@ -46,7 +47,7 @@
     </div>
   </div>
   <div class="bottom">
-    <button mat-fab color="warn">
+    <button mat-fab color="warn" (click)="openDialog()">
       <mat-icon>add</mat-icon>
     </button>
   </div>

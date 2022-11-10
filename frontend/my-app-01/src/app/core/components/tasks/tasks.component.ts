@@ -1,13 +1,15 @@
-import { MatDialog } from '@angular/material/dialog';
+import { TaskInsertDialogComponent } from './../task-insert-dialog/task-insert-dialog.component';
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../../model/task';
-
+import { TaskService } from '../../services/task.service';
+import { Dialog, DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 import {
+  CdkDrag,
   CdkDragDrop,
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { TaskService } from '../../services/task.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-tasks',
@@ -24,26 +26,26 @@ export class TasksComponent implements OnInit {
   //   { id: 'task6', task: 'tarefa6', status: 'do' },
   // ];
 
-  todoT!: Task[];
-
+  toDo!: Task[];
   todoDoing: Task[] = [];
   todoDone: Task[] = [];
 
-  constructor(private taskService: TaskService) {}
+  constructor(private taskService: TaskService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
+    this.getTasks();
+  }
+
+  getTasks() {
     this.taskService.getTasks().subscribe({
       next: (tasks) => {
-        this.todoT = tasks;
+        this.toDo = tasks;
       },
       error: (e) => {
         console.error(e);
       },
     });
   }
-  // todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
-
-  // done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
 
   drop(event: CdkDragDrop<Task[]>) {
     if (event.previousContainer === event.container) {
@@ -60,5 +62,44 @@ export class TasksComponent implements OnInit {
         event.currentIndex
       );
     }
+    if (event.container.id == 'cdk-drop-list-1') {
+      console.log('alterar status para doing');
+    } else if (event.container.id == 'cdk-drop-list-2') {
+      console.log('alterar status para done');
+      let id = this.todoDone.length;
+      // this.todoDone[0].status = 'done';
+      console.log(this.todoDone);
+    } else {
+      console.log('alterar status para to do');
+      console.log(event.container.data);
+    }
+  }
+
+  doing(item: CdkDrag<Task>) {
+    console.log(item.data);
+    return true;
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(TaskInsertDialogComponent, {
+      width: '250px',
+      data: { name: '', status: '' },
+    });
+
+    dialogRef.afterClosed().subscribe((task) => {
+      if (task !== undefined) {
+        task.status = 'ToDo';
+        console.log(task);
+
+        this.taskService.addTask(task).subscribe({
+          next: (task) => {
+            this.getTasks();
+          },
+          error: (err) => {
+            console.error(err);
+          },
+        });
+      }
+    });
   }
 }

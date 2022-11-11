@@ -48,6 +48,7 @@ export class TasksComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<Task[]>) {
+    console.log(this.doing);
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
@@ -61,19 +62,9 @@ export class TasksComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
-    }
-    if (event.container.id == 'cdk-drop-list-1') {
-      console.log('alterar status para doing');
-    } else if (event.container.id == 'cdk-drop-list-2') {
-      console.log('alterar status para done');
-      // let id = this.todoDone.length;
-      // this.todoDone[0].status = 'done';
-      const task = event.item.data;
-      console.log(task);
-      // console.log(this.todoDone);
-    } else {
-      console.log('alterar status para to do');
-      console.log(event.container.data);
+      const t = event.item.data;
+      t.status = event.container.element.nativeElement.classList[1];
+      console.log(t);
     }
   }
 

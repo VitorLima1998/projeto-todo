@@ -66,9 +66,11 @@ export class TasksComponent implements OnInit {
       console.log('alterar status para doing');
     } else if (event.container.id == 'cdk-drop-list-2') {
       console.log('alterar status para done');
-      let id = this.todoDone.length;
+      // let id = this.todoDone.length;
       // this.todoDone[0].status = 'done';
-      console.log(this.todoDone);
+      const task = event.item.data;
+      console.log(task);
+      // console.log(this.todoDone);
     } else {
       console.log('alterar status para to do');
       console.log(event.container.data);

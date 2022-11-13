@@ -2,7 +2,6 @@ import { TaskInsertDialogComponent } from './../task-insert-dialog/task-insert-d
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../../model/task';
 import { TaskService } from '../../services/task.service';
-import { Dialog, DialogRef, DIALOG_DATA } from '@angular/cdk/dialog';
 import {
   CdkDrag,
   CdkDragDrop,
@@ -17,25 +16,18 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./tasks.component.css'],
 })
 export class TasksComponent implements OnInit {
-  // todoT: Task[] = [
-  //   { id: 'task1', task: 'tarefa1', status: 'do' },
-  //   { id: 'task2', task: 'tarefa2', status: 'do' },
-  //   { id: 'task3', task: 'tarefa3', status: 'do' },
-  //   { id: 'task4', task: 'tarefa4', status: 'do' },
-  //   { id: 'task5', task: 'tarefa5', status: 'do' },
-  //   { id: 'task6', task: 'tarefa6', status: 'do' },
-  // ];
-
   toDo!: Task[];
   todoDoing: Task[] = [];
   todoDone: Task[] = [];
 
   constructor(private taskService: TaskService, public dialog: MatDialog) {}
 
+  // Inicializando a tela com a lista de tasks cadastradas
   ngOnInit(): void {
     this.getTasks();
   }
 
+  // Função de listar todas as tasks
   getTasks() {
     this.taskService.getTasks().subscribe({
       next: (tasks) => {
@@ -47,6 +39,7 @@ export class TasksComponent implements OnInit {
     });
   }
 
+  // Drag and Drop da tela principal
   drop(event: CdkDragDrop<Task[]>) {
     console.log(this.doing);
     if (event.previousContainer === event.container) {
@@ -73,6 +66,7 @@ export class TasksComponent implements OnInit {
     return true;
   }
 
+  // Tela de cadastrar tarefa
   openDialog(): void {
     const dialogRef = this.dialog.open(TaskInsertDialogComponent, {
       width: '250px',

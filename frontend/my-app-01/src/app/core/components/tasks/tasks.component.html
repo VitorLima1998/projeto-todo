@@ -9,8 +9,13 @@
         class="example-list"
         (cdkDropListDropped)="drop($event)"
       >
-        <div class="example-box" *ngFor="let item of toDo" cdkDrag>
-          {{ item.name }}
+        <div
+          class="example-box"
+          *ngFor="let todo of toDo"
+          cdkDrag
+          [cdkDragData]="toDo"
+        >
+          {{ todo.name }}
         </div>
       </div>
     </div>
@@ -27,11 +32,11 @@
       >
         <div
           class="example-box"
-          *ngFor="let task of todoDoing"
+          *ngFor="let todo of todoDoing"
           cdkDrag
-          [cdkDragData]="task"
+          [cdkDragData]="todoDoing"
         >
-          {{ task.name }}
+          {{ todo.name }}
         </div>
       </div>
     </div>
@@ -47,11 +52,11 @@
       >
         <div
           class="example-box"
-          *ngFor="let item of todoDone"
+          *ngFor="let todo of todoDone"
           cdkDrag
           [cdkDragData]="todoDone"
         >
-          {{ item.name }}
+          {{ todo.name }}
         </div>
       </div>
     </div>

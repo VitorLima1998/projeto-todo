@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>Add User</h1>
-<div mat-dialog-content>
+<!-- <div mat-dialog-content>
   <p>User detail:</p>
   <mat-form-field appearance="fill">
     <mat-label>User name:</mat-label>
@@ -15,7 +15,48 @@
     <mat-label>Password:</mat-label>
     <input type="password" matInput [(ngModel)]="data.password" />
   </mat-form-field>
-</div>
+</div> -->
+
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div class="form">
+    <label for="name">Name: </label>
+    <input
+      id="name"
+      type="text"
+      formControlName="name"
+      [(ngModel)]="data.name"
+    />
+  </div>
+
+  <div class="form">
+    <label for="first-name">E-mail: </label>
+    <input
+      id="email"
+      type="text"
+      formControlName="email"
+      [(ngModel)]="data.email"
+    />
+  </div>
+  <div class="form">
+    <label for="last-name">Password: </label>
+    <input
+      id="password"
+      type="password"
+      formControlName="password"
+      [(ngModel)]="data.password"
+    />
+  </div>
+  <div class="form">
+    <label for="last-name">Confirm Password: </label>
+    <input
+      id="confirmPassword"
+      type="password"
+      formControlName="confirmPassword"
+      [(ngModel)]="data.password"
+    />
+  </div>
+</form>
+
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()" color="primary">No Thanks</button>
   <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>

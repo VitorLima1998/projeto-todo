@@ -1,4 +1,5 @@
 import { Component, Inject } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from '../../model/user';
 import { UserService } from '../../services/user.service';
@@ -22,5 +23,16 @@ export class UserInsertDialogComponent {
   removeUser(id: string) {
     console.log('test');
     this.userService.removeUser(id);
+  }
+
+  userForm = new FormGroup({
+    name: new FormControl(''),
+    email: new FormControl(''),
+    password: new FormControl(''),
+    confirmPassword: new FormControl(''),
+  });
+
+  onSubmit() {
+    console.warn(this.userForm.value);
   }
 }

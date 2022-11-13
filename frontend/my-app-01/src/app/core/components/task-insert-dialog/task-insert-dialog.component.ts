@@ -2,6 +2,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../model/task';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-task-insert-dialog',
@@ -23,4 +24,6 @@ export class TaskInsertDialogComponent {
     console.log('test');
     // this.taskService.removeTask(id);
   }
+
+  task = new FormControl('');
 }

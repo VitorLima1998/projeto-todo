@@ -7,6 +7,7 @@ import { ComponentsModule } from './core/components/components.module';
 import { ToolbarComponent } from './core/layout/toolbar/toolbar.component';
 import { ServicesModule } from './core/services/services.module';
 import { MaterialModule } from './material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [AppComponent, ToolbarComponent],
   imports: [
@@ -16,6 +17,7 @@ import { MaterialModule } from './material/material.module';
     MaterialModule, // module for angular material
     ComponentsModule,
     ServicesModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

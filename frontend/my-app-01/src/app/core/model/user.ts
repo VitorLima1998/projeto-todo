@@ -4,6 +4,7 @@ export class User {
   email?: string;
   status?: boolean;
   password?: string;
+  confirmPassword?: string;
   confirmationToken?: string;
   salt?: string;
   createAt?: Date;

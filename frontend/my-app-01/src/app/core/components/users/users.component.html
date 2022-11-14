@@ -1,6 +1,5 @@
 <div class="tabela">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
-    <!-- Id Column -->
     <ng-container matColumnDef="userTable">
       <th mat-header-cell *matHeaderCellDef>USER REGISTRATION</th>
       <td mat-cell *matCellDef="let user">
@@ -36,7 +35,15 @@
               <mat-icon>edit</mat-icon>
             </button>
 
-            <button mat-fab color="warn" (click)="removeUser(user.id)">
+            <button
+              mat-fab
+              pButton
+              pRipple
+              type="button"
+              color="warn"
+              class="p-button-success mb-2"
+              (click)="removeUser(user.id)"
+            >
               <mat-icon>delete</mat-icon>
             </button>
           </div>

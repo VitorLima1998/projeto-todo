@@ -8,6 +8,7 @@ import { ToolbarComponent } from './core/layout/toolbar/toolbar.component';
 import { ServicesModule } from './core/services/services.module';
 import { MaterialModule } from './material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PrimengModule } from './primeng/primeng.module';
 @NgModule({
   declarations: [AppComponent, ToolbarComponent],
   imports: [
@@ -15,6 +16,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule, // module for angular material
+    PrimengModule, // module for primeng
     ComponentsModule,
     ServicesModule,
     ReactiveFormsModule,

@@ -4,11 +4,9 @@ import { UpdateHeroDto } from "./dto/update-hero.dto";
 export declare class HeroController {
     private readonly heroService;
     constructor(heroService: HeroService);
-    create(createHeroDto: CreateHeroDto): Promise<CreateHeroDto & import("./entities/hero.entity").Hero>;
-    findAll(): Promise<import("./entities/hero.entity").Hero[]>;
+    create(createHeroDto: CreateHeroDto): any;
+    findAll(): Promise<{}>;
     findOne(id: string): Promise<import("./entities/hero.entity").Hero>;
-    update(id: string, updateHeroDto: UpdateHeroDto): Promise<import("./entities/hero.entity").Hero>;
-    remove(id: string): Promise<{
-        message: string;
-    }>;
+    update(id: string, updateHeroDto: UpdateHeroDto): unknown;
+    remove(id: string): unknown;
 }

@@ -1,5 +1,4 @@
-import { CreateHeroDto } from './create-hero.dto';
-declare const UpdateHeroDto_base: import("@nestjs/mapped-types").MappedType<Partial<CreateHeroDto>>;
+declare const UpdateHeroDto_base: any;
 export declare class UpdateHeroDto extends UpdateHeroDto_base {
 }
 export {};

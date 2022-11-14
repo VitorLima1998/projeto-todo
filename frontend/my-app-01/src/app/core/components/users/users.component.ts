@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
+import { MessageService } from 'primeng/api';
 import { User } from '../../model/user';
 import { UserService } from '../../services/user.service';
 import { UserInsertDialogComponent } from '../user-insert-dialog/user-insert-dialog.component';
@@ -10,6 +10,7 @@ import { UserInsertDialogComponent } from '../user-insert-dialog/user-insert-dia
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css'],
+  providers: [MessageService],
 })
 export class UsersComponent implements OnInit {
   panelOpenState = false;
@@ -22,7 +23,11 @@ export class UsersComponent implements OnInit {
 
   @ViewChild(MatTable) table!: MatTable<User>;
 
-  constructor(private userService: UserService, public dialog: MatDialog) {}
+  constructor(
+    private userService: UserService,
+    private messageService: MessageService,
+    public dialog: MatDialog
+  ) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(UserInsertDialogComponent, {
@@ -51,6 +56,12 @@ export class UsersComponent implements OnInit {
           },
         });
 
+        // this.userService.updateUser(user, user.id).subscribe ({
+        //   next: (user) => {
+
+        //   }
+        // })
+
         this.table.renderRows();
       }
     });
@@ -59,9 +70,14 @@ export class UsersComponent implements OnInit {
   async removeUser(id: string) {
     await this.userService.removeUser(id).subscribe({
       next: () => {
-        // console.log(user);
-        alert('User deleted successfully');
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'User deleted successfully!',
+        });
         this.getUsers();
+
+        console.log(this.messageService);
       },
       error: () => {
         alert('Error while deleting the User');

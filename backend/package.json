@@ -39,8 +39,8 @@
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
     "typeorm": "^0.3.7",
-    "primeicons": "^2.0.0",
-    "primeng": "^8.0.3"
+    "primeng": "^14.0.0-rc.1",
+    "primeicons": "^5.0.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",

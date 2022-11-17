@@ -1,19 +1,19 @@
 <div class="container">
   <div cdkDropListGroup class="todo">
     <div class="example-container">
-      <h2>To do</h2>
+      <h2>To dossss 6666</h2>
 
       <div
         cdkDropList
         [cdkDropListData]="toDo"
-        class="example-list"
+        class="todo example-list"
         (cdkDropListDropped)="drop($event)"
       >
         <div
           class="example-box"
           *ngFor="let todo of toDo"
           cdkDrag
-          [cdkDragData]="toDo"
+          [cdkDragData]="todo"
         >
           {{ todo.name }}
         </div>
@@ -26,15 +26,14 @@
       <div
         cdkDropList
         [cdkDropListData]="todoDoing"
-        class="example-list"
+        class="doing example-list"
         (cdkDropListDropped)="drop($event)"
-        [cdkDropListEnterPredicate]="doing"
       >
         <div
           class="example-box"
           *ngFor="let todo of todoDoing"
           cdkDrag
-          [cdkDragData]="todoDoing"
+          [cdkDragData]="todo"
         >
           {{ todo.name }}
         </div>
@@ -47,14 +46,14 @@
       <div
         cdkDropList
         [cdkDropListData]="todoDone"
-        class="example-list"
+        class="done example-list"
         (cdkDropListDropped)="drop($event)"
       >
         <div
           class="example-box"
           *ngFor="let todo of todoDone"
           cdkDrag
-          [cdkDragData]="todoDone"
+          [cdkDragData]="todo"
         >
           {{ todo.name }}
         </div>

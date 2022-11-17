@@ -55,12 +55,11 @@ export class UsersComponent implements OnInit {
             console.error(err);
           },
         });
-
-        // this.userService.updateUser(user, user.id).subscribe ({
-        //   next: (user) => {
-
-        //   }
-        // })
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'User created successfully!',
+        });
 
         this.table.renderRows();
       }
@@ -70,11 +69,6 @@ export class UsersComponent implements OnInit {
   async removeUser(id: string) {
     await this.userService.removeUser(id).subscribe({
       next: () => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: 'User deleted successfully!',
-        });
         this.getUsers();
 
         console.log(this.messageService);
@@ -83,7 +77,11 @@ export class UsersComponent implements OnInit {
         alert('Error while deleting the User');
       },
     });
-
+    this.messageService.add({
+      severity: 'warn',
+      summary: 'Deleted.',
+      detail: 'User deleted successfully!',
+    });
     this.table.renderRows();
   }
 

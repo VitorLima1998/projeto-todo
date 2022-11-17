@@ -9,6 +9,7 @@ import { ServicesModule } from './core/services/services.module';
 import { MaterialModule } from './material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PrimengModule } from './primeng/primeng.module';
+import { ToastModule } from 'primeng/toast';
 @NgModule({
   declarations: [AppComponent, ToolbarComponent],
   imports: [

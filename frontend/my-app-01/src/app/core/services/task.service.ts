@@ -20,6 +20,10 @@ export class TaskService {
     return this.http.get<Task[]>(baseUrl);
   }
 
+  update(task: Task): Observable<Task> {
+    return this.http.put<Task>(baseUrl, task);
+  }
+
   addTask(task: Task): Observable<Task> {
     return this.http
       .post(baseUrl, task, {

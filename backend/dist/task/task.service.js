@@ -18,23 +18,41 @@ const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const task_entity_1 = require("./entities/task.entity");
 let TaskService = class TaskService {
-    constructor(usersRepository) {
-        this.usersRepository = usersRepository;
+    constructor(taskRepository) {
+        this.taskRepository = taskRepository;
     }
     async create(createTaskDto) {
-        return this.usersRepository.insert(createTaskDto);
+        return this.taskRepository.insert(createTaskDto);
     }
     async findAll() {
-        return await this.usersRepository.find();
+        return await this.taskRepository.find();
     }
     findOne(id) {
-        return `This action returns a #${id} task`;
+        const task = this.taskRepository
+            .createQueryBuilder("task")
+            .select(["task.name"])
+            .getOne();
+        if (!task)
+            throw new common_1.NotFoundException("Usuário não encontrado");
+        return task;
     }
-    update(id, updateTaskDto) {
-        return `This action updates a #${id} task`;
+    async update(updateTaskDto, id) {
+        const task = await this.findOne(id);
+        const { name } = updateTaskDto;
+        task.name = name ? name : task.name;
+        try {
+            await this.taskRepository.save(task);
+            return task;
+        }
+        catch (error) {
+            throw new common_1.InternalServerErrorException("Erro ao salvar os dados no Banco de Dados!");
+        }
     }
-    remove(id) {
-        return `This action removes a #${id} task`;
+    async remove(taskId) {
+        const result = await this.taskRepository.delete({ id: taskId });
+        if (result.affected === 0) {
+            throw new common_1.NotFoundException("Não foi encontrado um usuário com o ID informado");
+        }
     }
 };
 TaskService = __decorate([

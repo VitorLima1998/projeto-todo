@@ -1,8 +1,8 @@
+import { ToastComponent } from './core/components/toast/toast.component';
 import { UserDetailComponent } from './core/components/user-detail/user-detail.component';
 import { UsersComponent } from './core/components/users/users.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { HeroDetailComponent } from './core/components/hero-detail/hero-detail.component';
 import { HeroesComponent } from './core/components/heroes/heroes.component';
 import { TasksComponent } from './core/components/tasks/tasks.component';
@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'users', component: UsersComponent },
   { path: 'users/:id', component: UserDetailComponent },
   { path: 'tasks', component: TasksComponent },
+  { path: 'toast', component: ToastComponent },
   { path: '', redirectTo: '/heroes', pathMatch: 'full' },
 ];
 @NgModule({

@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="tabela">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z0">
     <ng-container matColumnDef="userTable">
@@ -37,12 +38,11 @@
 
             <button
               mat-fab
+              type="button"
               pButton
               pRipple
-              type="button"
-              color="warn"
-              class="p-button-success mb-2"
               (click)="removeUser(user.id)"
+              class="p-button-warning mb-2"
             >
               <mat-icon>delete</mat-icon>
             </button>
@@ -58,7 +58,15 @@
   </table>
 </div>
 <div class="bottom">
-  <button mat-fab color="warn" (click)="openDialog()">
+  <button
+    mat-fab
+    color=""
+    type="button"
+    pButton
+    pRipple
+    (click)="openDialog()"
+    class="p-button-success mb-2"
+  >
     <mat-icon>add</mat-icon>
   </button>
 </div>

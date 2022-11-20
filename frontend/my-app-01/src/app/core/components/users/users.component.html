@@ -10,9 +10,9 @@
         >
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <mat-icon>account_circle</mat-icon>
-              {{ user.name }}</mat-panel-title
-            >
+              <i class="pi pi-user"></i>
+              {{ user.name }}
+            </mat-panel-title>
             <mat-panel-description>
               Click to view User's details
             </mat-panel-description>
@@ -32,20 +32,22 @@
           </div>
 
           <div class="button">
-            <button mat-fab color="warn" (click)="openDialog()">
-              <mat-icon>edit</mat-icon>
-            </button>
-
             <button
-              mat-fab
-              type="button"
               pButton
               pRipple
-              (click)="removeUser(user.id)"
-              class="p-button-warning mb-2"
-            >
-              <mat-icon>delete</mat-icon>
-            </button>
+              type="button"
+              icon="pi pi-user-edit"
+              class="p-button-rounded p-button-warning"
+            ></button>
+
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-danger"
+              [ngStyle]="{ backgroundColor: 'var(--red-600)' }"
+            ></button>
           </div>
         </mat-expansion-panel>
       </td>
@@ -59,14 +61,12 @@
 </div>
 <div class="bottom">
   <button
-    mat-fab
-    color=""
-    type="button"
     pButton
     pRipple
+    type="button"
+    icon="pi pi-user-plus"
+    class="p-button-rounded p-button-success"
+    [ngStyle]="{ backgroundColor: 'var(--green-600)' }"
     (click)="openDialog()"
-    class="p-button-success mb-2"
-  >
-    <mat-icon>add</mat-icon>
-  </button>
+  ></button>
 </div>

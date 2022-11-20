@@ -17,6 +17,7 @@ export class UserInsertDialogComponent {
   ) {}
 
   onNoClick(): void {
+    console.log(this.data);
     this.dialogRef.close();
   }
 

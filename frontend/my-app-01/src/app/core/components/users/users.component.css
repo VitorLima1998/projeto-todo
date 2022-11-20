@@ -2,13 +2,12 @@ li {
   cursor: pointer;
 }
 
-li:hover {
-  background: rgba(121, 121, 121, 0.52);
+span {
+  font-weight: bold;
 }
 
 table {
   width: 100rem;
-  background: #fff;
   padding: 1rem;
   border-radius: 2rem;
   margin-bottom: 1rem;
@@ -18,31 +17,11 @@ table {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80vh;
+  width: 100vh;
   box-shadow: none;
 }
 
-.demo-table {
-  width: 100%;
-}
-
-.mat-row .mat-cell {
-  border-bottom: 1px solid transparent;
-  border-top: 1px solid transparent;
-  cursor: pointer;
-}
-
-.mat-row:hover .mat-cell {
-  border-color: currentColor;
-  background: whitesmoke;
-}
-
-.demo-row-is-clicked {
-  font-weight: bold;
-}
-
 .bottom {
-  padding: 0.8rem;
   display: flex;
   justify-content: flex-end;
 }
@@ -53,24 +32,17 @@ td .button {
   justify-content: flex-end;
 }
 
-td .button button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 2rem;
-  height: 2rem;
-}
-
-td .button button mat-icon {
-  font-size: 1.3rem;
-}
-
-span {
-  font-weight: bold;
-}
-
 .detail {
   display: flex;
   flex-direction: column;
   padding: 1rem;
+}
+
+mat-expansion-panel-header mat-panel-title {
+  display: flex;
+  gap: 0.5rem;
+}
+
+mat-expansion-panel-header mat-panel-title i {
+  font-weight: bold;
 }

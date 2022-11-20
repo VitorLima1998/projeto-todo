@@ -8,7 +8,7 @@ export declare class UserController {
     findAll(): Promise<User[]>;
     findOne(id: string): Promise<User>;
     findByEmail(email: string): Promise<User>;
-    update(id: string, user: CreateUserDto): Promise<User>;
+    update(createUserDto: CreateUserDto): Promise<void>;
     remove(id: string): Promise<{
         message: string;
     }>;

@@ -74,20 +74,21 @@ export class UserService {
     return await this.usersRepository.findOneBy({ email });
   }
   //----------------------------------------------------------------------------
-  async update(updateUserDto: UpdateUserDto, id: string) {
-    const user = await this.findOne(id);
-    const { name, email, status } = updateUserDto;
-    user.name = name ? name : user.name;
-    user.email = email ? email : user.email;
-    user.status = status === undefined ? user.status : status;
-    try {
-      await this.usersRepository.save(user);
-      return user;
-    } catch (error) {
-      throw new InternalServerErrorException(
-        "Erro ao salvar os dados no banco de dados"
-      );
-    }
+  async update(updateUserDto: UpdateUserDto) {
+    // const user = await this.findOne(id);
+    this.usersRepository.save(updateUserDto);
+    // const { name, email, status } = updateUserDto;
+    // user.name = name ? name : user.name;
+    // user.email = email ? email : user.email;
+    // // user.status = status === undefined ? user.status : status;
+    // try {
+    //   // await this.usersRepository.save(user);
+    //   // return user;
+    // } catch (error) {
+    //   throw new InternalServerErrorException(
+    //     "Erro ao salvar os dados no banco de dados"
+    //   );
+    // }
   }
   //----------------------------------------------------------------------------
   async remove(userId: string) {

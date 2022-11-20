@@ -41,21 +41,16 @@ export class UserController {
     return this.userService.findByEmail(email);
   }
 
-  // @Patch("/:id")
-  // update(
-  //   @Param("id") id: string,
-  //   @Body(ValidationPipe) updateUserDto: UpdateUserDto
-  // ) {
-  //   return this.userService.update(id, updateUserDto);
-  // }
-
-  @Put(":id")
-  async update(
-    @Param("id") id: string,
-    @Body() user: CreateUserDto
-  ): Promise<User> {
-    return this.userService.update(user, id);
+  @Put()
+  update(@Body() createUserDto: CreateUserDto) {
+    return this.userService.update(createUserDto);
   }
+  // async update(
+  //   @Param("id") id: string,
+  //   @Body() user: CreateUserDto
+  // ): Promise<User> {
+  //   return this.userService.update(user, id);
+  // }
 
   @Delete("/:id")
   async remove(@Param("id") id: string) {

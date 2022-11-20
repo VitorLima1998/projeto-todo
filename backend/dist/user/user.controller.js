@@ -33,8 +33,8 @@ let UserController = class UserController {
     findByEmail(email) {
         return this.userService.findByEmail(email);
     }
-    async update(id, user) {
-        return this.userService.update(user, id);
+    update(createUserDto) {
+        return this.userService.update(createUserDto);
     }
     async remove(id) {
         await this.userService.remove(id);
@@ -72,12 +72,11 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "findByEmail", null);
 __decorate([
-    (0, common_1.Put)(":id"),
-    __param(0, (0, common_1.Param)("id")),
-    __param(1, (0, common_1.Body)()),
+    (0, common_1.Put)(),
+    __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, create_user_dto_1.CreateUserDto]),
-    __metadata("design:returntype", Promise)
+    __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
+    __metadata("design:returntype", void 0)
 ], UserController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)("/:id"),

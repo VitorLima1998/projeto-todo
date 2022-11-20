@@ -67,19 +67,8 @@ let UserService = class UserService {
     async findByEmail(email) {
         return await this.usersRepository.findOneBy({ email });
     }
-    async update(updateUserDto, id) {
-        const user = await this.findOne(id);
-        const { name, email, status } = updateUserDto;
-        user.name = name ? name : user.name;
-        user.email = email ? email : user.email;
-        user.status = status === undefined ? user.status : status;
-        try {
-            await this.usersRepository.save(user);
-            return user;
-        }
-        catch (error) {
-            throw new common_1.InternalServerErrorException("Erro ao salvar os dados no banco de dados");
-        }
+    async update(updateUserDto) {
+        this.usersRepository.save(updateUserDto);
     }
     async remove(userId) {
         const result = await this.usersRepository.delete({ id: userId });

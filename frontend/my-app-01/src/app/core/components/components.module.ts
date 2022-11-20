@@ -13,7 +13,6 @@ import { UsersComponent } from './users/users.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TasksComponent } from './tasks/tasks.component';
 import { TaskInsertDialogComponent } from './task-insert-dialog/task-insert-dialog.component';
-import { ToastComponent } from './toast/toast.component';
 
 const COMPONENTS = [
   HeroesComponent,
@@ -24,7 +23,6 @@ const COMPONENTS = [
   UserDetailComponent,
   TasksComponent,
   TaskInsertDialogComponent,
-  ToastComponent,
 ];
 
 @NgModule({

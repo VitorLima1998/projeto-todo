@@ -1,4 +1,3 @@
-import { ToastComponent } from './core/components/toast/toast.component';
 import { UserDetailComponent } from './core/components/user-detail/user-detail.component';
 import { UsersComponent } from './core/components/users/users.component';
 import { NgModule } from '@angular/core';
@@ -13,8 +12,7 @@ const routes: Routes = [
   { path: 'users', component: UsersComponent },
   { path: 'users/:id', component: UserDetailComponent },
   { path: 'tasks', component: TasksComponent },
-  { path: 'toast', component: ToastComponent },
-  { path: '', redirectTo: '/heroes', pathMatch: 'full' },
+  { path: '', redirectTo: '/users', pathMatch: 'full' },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

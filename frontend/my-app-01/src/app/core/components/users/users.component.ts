@@ -55,11 +55,8 @@ export class UsersComponent implements OnInit {
             console.error(err);
           },
         });
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success',
-          detail: 'User created successfully!',
-        });
+
+        this.showMessage('success', 'User created successfully!');
 
         this.table.renderRows();
       }
@@ -71,43 +68,42 @@ export class UsersComponent implements OnInit {
       next: () => {
         this.getUsers();
 
-        console.log(this.messageService);
+        // console.log(this.messageService);
       },
       error: () => {
         alert('Error while deleting the User');
       },
     });
-    this.messageService.add({
-      severity: 'warn',
-      summary: 'Deleted.',
-      detail: 'User deleted successfully!',
-    });
+
+    this.showMessage('warn', 'User deleted successfully!');
+
     this.table.renderRows();
   }
 
-  updateUser(user: User) {
-    this.userService.updateUser(user, user.id as string).subscribe({
-      next: (user) => {
-        // console.log(user);
-        this.getUsers(); // Atualizar o data Source
-      },
-      error: (err) => {
-        console.error(err);
-      },
-    });
-  }
-
-  removeData() {
-    this.dataSource.pop();
-    this.table.renderRows();
+  editUser(u: User) {
+    const dialogRef = this.dialog
+      .open(UserInsertDialogComponent, {
+        width: '250px',
+        data: u,
+      })
+      .afterClosed()
+      .subscribe({
+        next: (u) => {
+          // console.log(u);
+          this.userService.updateUser(u).subscribe({
+            next: (u) => {
+              this.showMessage('info', 'User updated successfully!');
+            },
+            error: (e) => {
+              console.error(e);
+            },
+          });
+        },
+      });
   }
 
   ngOnInit(): void {
     this.getUsers();
-  }
-
-  selectUser(user: User): void {
-    this.selectedUser = user;
   }
 
   getUsers(): void {
@@ -119,4 +115,22 @@ export class UsersComponent implements OnInit {
       error: (e) => console.error(e),
     });
   }
+
+  removeData() {
+    this.dataSource.pop();
+    this.table.renderRows();
+  }
+
+  selectUser(user: User): void {
+    this.selectedUser = user;
+  }
+
+  showMessage(typeToast: string, Msg: string) {
+    this.messageService.add({
+      severity: typeToast,
+      detail: Msg,
+    });
+  }
 }
+
+// Filtrar(props: string, lista: task[]){}
